@@ -34,21 +34,14 @@
     console.log(test);
 
     let d = obj.d;
-
     let GPI = window.GPI;
 
-    GPI.init("obj");
-
-    let cParent = GPI.getParent(c);
-    console.log("cParent: ", cParent);
-    console.log(GPI.getObjByName('obj'));
+    GPI.init("obj", obj);
     console.log(obj, "obj");
-
-    console.log("不能设置和获取null的父对象 --", GPI.getParent(obj.e));
-    console.log(GPI.getParent(d[4]));
 
     console.log("getParent", d.getParent());
 
+    console.log(obj.b.c);
     console.log(obj.b.c.getParent());
 
 
@@ -61,8 +54,9 @@
       }
     }]
 
-    GPI.init('array');
+    GPI.init('array', array);
 
+    console.log(array[3]);
     console.log(array[3].getParent());
 
 

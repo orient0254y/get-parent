@@ -6,65 +6,31 @@
  *  'number1': 123
  * }
  * obj2.getParent();获取某个子对象obj2（引用类型，包含对象、数组、函数）的父对象obj1，Number、Boolean、String、undefined、null基本类型无此功能
- * GPI.getObjByName('obj1'); 通过名称获取指定对象，需要在有效作用域中
  */
 
 ; (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
       (global.GPI = factory());
-}(window, function () {
+}((window || global), function () {
   'use strict';
   const _toString = Object.prototype.toString;
   const _hasOwnProperty = Object.prototype.hasOwnProperty;
   const _define = Object.defineProperty;
   let initFlag = true;
-  const getParent = {
-    /**
-     * 通过名字获取对象
-     * @param {*} name 
-     * @returns 
-     */
-    getObjByName(name) {
-      try {
-        return new Function("return " + name)();
-      } catch {
-        console.error(name + "未定义，请检查作用域");
-        return undefined;
-      }
-    },
-    /**
-     * 通过对象获取父对象
-     * @param {*} obj 
-     * @returns 
-     */
-    getParent(obj) {
-      let parentName = "";
-      if (typeof obj === 'object' && obj !== null || typeof obj === 'function') {
-        if (obj.__parent) {
-          parentName = obj.__parent;
-        } else {
-          console.log("不再存在父对象,或未初始化");
-          return undefined;
-        }
-      } else {
-        console.error("参数必须为对象或函数, 并且不能为null");
-        return undefined;
-      }
-      return this.getParent2(parentName);
-    },
+  let ancestors = null; // 祖先
+  const GPI = {
     /**
      * 通过父对象的名字获取父对象
      * @param {*} parentName 
      * @returns 
      */
-    getParent2(parentName) {
-      let array = parentName.split("-");
-      let ancestors = this.getObjByName(array[0]); // 祖先
+    getParent2(objectName, object) {
+      let array = objectName.split("-");
       let parent = ancestors;
       let nameArray = [];
       nameArray.push(array[0])
-      if (ancestors) {
+      if (parent) {
         for (let index = 1; index < array.length; index++) {
           parent = parent[array[index]];
           if (parent) {
@@ -82,12 +48,15 @@
       }
       return ancestors;
     },
-    init(name) {
+    init(objectName, object) {
       initFlag = true;
-      this.setProto(name);
+      ancestors = object;
+      this.setProto(objectName, object);
     },
     setProto(objectName, object) {
-      object = object || new Function('return ' + objectName)();
+      if(!object){
+        return
+      }
       let proType = _toString.call(object);
       if (proType === '[object Object]') {
         if(initFlag){
@@ -152,7 +121,7 @@
             if(parentObject === null){
               return null;
             }
-            return this.getParent2(parentName)
+            return this.getParent2(parentName, parentObject)
           }
         }
       };
@@ -285,5 +254,5 @@
       return protoAttr
     }
   }
-  return getParent;
+  return GPI;
 }));
