@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./getParent.js"></script>
+  <script>
+    let obj = {
+      a: 1,
+      b: {
+        val : 2,
+        c: {
+          val: 3
+        }
+      },
+      test(a){
+        console.log(a);
+      },
+      d: [1,2,3,4,{
+        e: 123
+      }],
+      e: null,
+      f: new String('adf'),
+      g: new Number(123)
+    }
+
+    let c = obj.b.c;
+    console.log(c);
+    let test = obj.test;
+    console.log(test);
+
+    let d = obj.d;
+
+    let GPI = window.GPI;
+
+    GPI.init("obj");
+
+    let cParent = GPI.getParent(c);
+    console.log("cParent: ", cParent);
+    console.log(GPI.getObjByName('obj'));
+    console.log(obj, "obj");
+
+    console.log("不能设置和获取null的父对象 --", GPI.getParent(obj.e));
+    console.log(GPI.getParent(d[4]));
+
+    console.log("getParent", d.getParent());
+
+    console.log(obj.b.c.getParent());
+
+
+
+    // ======================
+
+    let array = [1,23,4, {
+      asd: {
+        fff: 2323
+      }
+    }]
+
+    GPI.init('array');
+
+    console.log(array[3].getParent());
+
+
+    let obj2 = {
+      zzz: 111,
+      xxx: {
+        ccc: 123
+      }
+    }
+  </script>
+</body>
+</html>
