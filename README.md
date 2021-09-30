@@ -1,7 +1,7 @@
 # get-parent
 
 #### 介绍
-获取某个非null对象、数组或函数的父对象。
+获取某个非null对象、数组或函数的父对象;
 To obtain a not null objects, arrays, or function of the parent object;
 
 #### 安装
