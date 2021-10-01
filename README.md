@@ -8,11 +8,11 @@ To obtain a not null objects, arrays, or function of the parent object;
 #### 通过npm引入使用
 1.  npm install get-parent --save
 2.  import GPI from "get-parent"; // GPI自己可以定义其它名字
-3.  let gpi = new GPI(objectName, object); //init版->GPI.init(objectName, object); // 需要用哪个对象在给他初始化
+3.  init版->GPI.init(objectName, object); // 需要用哪个对象在给他初始化 --class版let gpi = new GPI(objectName, object); 
 4.  childObject.getParent(); // 获取父对象
 5.  object.add(key, value); //对象添加新元素,通过此方法添加的对象、数组、函数仍然可以获取到父对象
 6.  Array的push/unshift/splice已经改造，增加元素一样可以监听
-7.  gpi.ancestors // 获取原对象，祖先对象, init版无此方法
+7.  //gpi.ancestors // 获取原对象，祖先对象, init版无此方法
 
   例子：
   ```
@@ -73,11 +73,11 @@ To obtain a not null objects, arrays, or function of the parent object;
 #### 通过script标签引入使用
 1.  路径根据自己的文件位置定义<script src="./getParent.js"></script>
 2.  let GPI = window.GPI;
-3.  let gpi = new GPI(objectName, object);//init版->GPI.init(objectName, object);// 需要用哪个对象在给他初始化
+3.  init版->GPI.init(objectName, object); // 需要用哪个对象在给他初始化 --class版let gpi = new GPI(objectName, object); 
 4.  childObject.getParent(); // 获取父对象
 5.  object.add(key, value); //对象添加新元素,通过此方法添加的对象、数组、函数仍然可以获取到父对象
 6.  Array的push/unshift/splice已经改造，增加元素一样可以监听
-7.  gpi.ancestors // 获取原对象，祖先对象, init版无此方法
+7.  //gpi.ancestors // 获取原对象，祖先对象, init版无此方法
 
   例子：
   ```
