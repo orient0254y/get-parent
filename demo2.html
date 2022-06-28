@@ -51,21 +51,20 @@
       g: new Number(123)
     }
 
+    console.log("初始对象obj: ", obj);
+
     let c = obj.b.c;
-    console.log(c);
+    console.log("obj.b.c: ",c);
     let test = obj.test;
-    console.log(test);
+    console.log("obj.test: ",test);
 
     let d = obj.d;
     let GPI = window.GPI;
     let gpi = new GPI("obj", obj);
 
-    console.log(obj, "obj");
+    console.log("d.getParent(): ", d.getParent());
 
-    console.log("getParent", d.getParent());
-
-    console.log(obj.b.c);
-    console.log(obj.b.c.getParent());
+    console.log(c.getParent());
 
 
 

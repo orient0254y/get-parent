@@ -20,7 +20,7 @@
 
 
       #### 通过script标签引入使用
-      1.  路径根据自己的文件位置定义<script src="./getParentFn.js"></script>
+      1.  路径根据自己的文件位置定义<script src="./getParent.js"></script>
       2.  let GPI = window.GPI;
       3.  GPI.init(objectName, object);// 需要用哪个对象在给他初始化
       4.  childObject.getParent(); // 获取父对象
@@ -50,20 +50,23 @@
     }
 
     let c = obj.b.c;
-    console.log(c);
     let test = obj.test;
-    console.log(test);
 
     let d = obj.d;
     let GPI = window.GPI;
 
     GPI.init("obj", obj);
-    console.log(obj, "obj");
+    console.log("定义原始对象obj: ", obj);
+    console.log('定义c=obj.b.c: ',c);
+    console.log('定义test=obj.test: ',test);
 
-    console.log("getParent", d.getParent());
+    console.log("d.getParent(): ", d.getParent());
 
-    console.log(obj.b.c);
-    console.log(obj.b.c.getParent());
+    console.log("c.getParent(): ", c.getParent());
+
+    let f = obj.f;
+    console.log("定义f = obj.f: ", f);
+    console.log("f.getParent()", f.getParent());
 
 
 
@@ -77,16 +80,10 @@
 
     GPI.init('array', array);
 
-    console.log(array[3]);
-    console.log(array[3].getParent());
-
-
-    let obj2 = {
-      zzz: 111,
-      xxx: {
-        ccc: 123
-      }
-    }
+    console.log("定义原始数组array: ", array);
+    let a3 = array[3];
+    console.log("定义a3 = array[3]: ", array[3]);
+    console.log("a3.getParent(): ",a3.getParent());
   </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 {
   "name": "get-parent",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "获取某个非null对象、数组或函数的父对象;To obtain a not null objects, arrays, or function of the parent object;",
   "main": "getParent.js",
   "scripts": {
